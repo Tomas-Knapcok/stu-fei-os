@@ -192,11 +192,13 @@ UPROGS=\
     $U/_ls\
     $U/_mkdir\
     $U/_open\
+	$U/_pingpong\
     $U/_pipe1\
     $U/_pipe2\
     $U/_redirect\
     $U/_rm\
     $U/_sh\
+	$U/_sleep\
     $U/_stressfs\
     $U/_usertests\
     $U/_grind\
