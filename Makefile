@@ -181,6 +181,7 @@ UPROGS=\
     $U/_copy\
     $U/_echo\
     $U/_exec\
+	$U/_find\
     $U/_fork\
     $U/_forkexec\
     $U/_forktest\
