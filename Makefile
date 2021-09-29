@@ -196,6 +196,7 @@ UPROGS=\
 	$U/_pingpong\
     $U/_pipe1\
     $U/_pipe2\
+	$U/_primes\
     $U/_redirect\
     $U/_rm\
     $U/_sh\
