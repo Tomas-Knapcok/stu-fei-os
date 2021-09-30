@@ -5,8 +5,10 @@
 int numbers() {
 	int out[2];
 	
+	// create pipe
 	pipe(out);
 
+	//send numbers 2-35 to child through pipe
 	if (!fork()) {
 		for (int i = 2; i < 36; i++) {
 			write(out[1], &i, sizeof(int));
@@ -28,6 +30,8 @@ int prime_numbers(int in, int prime)
 
 	pipe(out);
 
+	//read numbers sent from parent through pipe
+	//find if number is prime
 	if (!fork()) {
 		while (read(in, &num, sizeof(int))) {
 			if (num % prime != 0) {
@@ -52,6 +56,8 @@ main(int argc, char *argv[])
 	int prime; 
 	int num = numbers();
 
+	//print number which is prime
+	//call recursive function to find all primes 
 	while (read(num, &prime, sizeof(int))) {
 		printf("prime %d\n", prime); 
 		num= prime_numbers(num, prime);
