@@ -13,7 +13,7 @@ char* fmtname(char* path)
 }
 
 
-void find(char* path,char* file)
+void find(char* path,char* file_name)
 {
     char buf[512], *p;
     int fd;
@@ -26,6 +26,7 @@ void find(char* path,char* file)
        return;
     }
 
+    //checking type (DIR,FILE,DEVICE)
     if(fstat(fd, &st) < 0)
     {
        fprintf(2,"find: cannot stat %s\n",path);
@@ -35,7 +36,8 @@ void find(char* path,char* file)
     switch(st.type)
     {
     case T_FILE:
-	    if(strcmp(fmtname(path), file) == 0)
+      //compare strings in char* path and target file and print on std
+	    if(strcmp(fmtname(path), file_name) == 0)
         printf("%s\n",path);
 		  break;
     
@@ -47,8 +49,11 @@ void find(char* path,char* file)
       strcpy(buf, path);
       p = buf+strlen(buf);
       *p++ = '/';
+
+      //searching through directory
       while(read(fd, &de, sizeof(de)) == sizeof(de))
 	    {
+        //checking file index number stored in struct
         if(de.inum == 0)  
           continue;
 	      memmove(p, de.name, DIRSIZ);
@@ -58,12 +63,18 @@ void find(char* path,char* file)
           printf("find: cannot stat %s\n", buf);
           continue;
 	      }
-
+        //controling file is not . or ..
         if(strcmp(de.name,".") == 0 || strcmp(de.name,"..") == 0) {
           continue;
         }
+
+        //compare subfile from char* path and target file and print on std
+        if(strcmp(de.name, file_name) == 0){
+          printf("%s/%s\n",path, file_name);
+        }
         
-	      find(buf, file);
+        //recursively calling find function
+	      find(buf, file_name);
 
 	    }
       break;	 
