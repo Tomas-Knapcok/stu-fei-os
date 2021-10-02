@@ -36,7 +36,7 @@ void find(char* path,char* file_name)
     switch(st.type)
     {
     case T_FILE:
-      //compare strings in char* path and target file and print on std
+      //comparing strings in char* path and target file and print on std
 	    if(strcmp(fmtname(path), file_name) == 0)
         printf("%s\n",path);
 		  break;
@@ -50,7 +50,7 @@ void find(char* path,char* file_name)
       p = buf+strlen(buf);
       *p++ = '/';
 
-      //searching through directory
+      //searching through out directory
       while(read(fd, &de, sizeof(de)) == sizeof(de))
 	    {
         //checking file index number stored in struct
@@ -63,14 +63,9 @@ void find(char* path,char* file_name)
           printf("find: cannot stat %s\n", buf);
           continue;
 	      }
-        //controling file is not . or ..
+        //controling file is not . or .., to forbid looping
         if(strcmp(de.name,".") == 0 || strcmp(de.name,"..") == 0) {
           continue;
-        }
-
-        //compare subfile from char* path and target file and print on std
-        if(strcmp(de.name, file_name) == 0){
-          printf("%s/%s\n",path, file_name);
         }
         
         //recursively calling find function
@@ -87,7 +82,8 @@ void find(char* path,char* file_name)
 int main(int argc,char* argv[])
 {
   if(argc < 3)
-  {  
+  { 
+    printf("Need more arguments"); 
     exit(1);
   }
   find(argv[1], argv[2]);
