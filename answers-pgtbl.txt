@@ -1,0 +1,13 @@
+1. Ktoré iné systémové volania môžu byť urýchlené prostredníctvom tejto zdieľanej stránky? Vysvetlite ako. 
+    Urychlené môže byť taktiež systémové volanie fork.
+2. Vysvetlite výstup funkcie vmprint() a jeho súvis s obrázkom 3-4 z xv6 knižky. 
+    Vypíše tabuľky 3 urovní, L2, L1 a L0. Jednu tabuľku úrovne L2 s indexmi 0 a 255. Na indexe 0 má tabuľku úrovne L1 s indexom 0 v ktorej má využitú tabuľku úrovne L0 s indexmi 0 - 2. 
+3. Čo obsahuje stránka 0? 
+    Tabuľky stránok prvého procesu init pred jeho spustením.
+4. Čo je v stránke 2? 
+    Druhá časť tabuľky trampoline (511) trapframe (510) a namapovany usyscall (509).
+5. Keď proces beží v užívateľskom móde, môže prečítať/zapísať pamäť mapovanú stránkou 1? 
+    The kernel reads and executes instructions from these pages. The kernel maps the other pages with the permissions PTE_R and PTE_W, so that it can read and write the memory in those pages.
+6. Čo obsahuje tretia stránka od konca? 
+    Namapovanu funkciu usyscall.
+
