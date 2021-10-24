@@ -1,0 +1,21 @@
+1. Ktoré registre obsahujú argumenty funkcií? 
+    Sú to registre a0 až a5.
+2. V ktorom registri je napríklad uložené číslo 13 (argument funkcie printf())?
+    V registri a2.
+3. Kde je volanie funkcie f() z funkcie main()?
+    Na riadku 46 v súbore call.asm, register a1.
+4. Kde je volanie funkcie g()?
+    Na riadku 50 v súbore call.asm.
+5. Na ktorej adrese sa nachádza funkcia printf()?
+    printf() sa navhádza na adrese 0x638.
+6. Aká hodnota je v registri ra hneď po jalr do funkcie printf() vo funkcii main()?
+    Jeho hodnota je 30.
+7. Aký je jeho výstup?
+    Výstupom bude He110 World.
+8. Aký bude výstup závisí od toho, či je architektúra RISC-V little-endian. Ak by bol RISC-V big-endian, akú hodnotu by ste museli priradiť premennej i, aby bol výstup totožný?
+    V prípade little-endian priradzujeme i hodnotu 0x00646c72.
+    Keďže ide a prípad big-endian hodnota i bude 0x726c6400.
+9. Bolo by tiež potrebné zmeniť hodnotu 57616?
+    Ano a to na hodnotu 4321.
+10. Čo bude na výpise za 'y=' v nižšie uvedenom kóde? (poznámka: nie je to žiadna špecifická hodnota.) Prečo sa to deje?
+    Registre a0 až a5 v sebe ukládaju argumenty funkcií, preto sa vypíše obsah registra a2 ako ďalšieho v poradí.
